@@ -57,15 +57,14 @@
     const resultDiv = document.getElementById('result');
 
     // Render questions
-  
-  set1.questions.forEach((q, i) => {
-  const div = document.createElement('div');
-  div.className = "question";
-  div.id = `question-${i}`;
-  div.innerHTML = `<label><strong>${q}</strong></label> <input type="text" name="q${i}" />`;
-  form.appendChild(div);
-});
 
+  set1.questions.forEach((q, i) => {
+      const div = document.createElement('div');
+      div.className = "question";
+      div.id = `question-${i}`;
+      div.innerHTML = `${q}<br><input type="text" name="q${i}" />`;
+      form.appendChild(div);
+    });
     function submitQuiz() {
       const formData = new FormData(form);
       let score = 0;
