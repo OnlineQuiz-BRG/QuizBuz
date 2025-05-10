@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Quiz</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      width: 80px;
+      padding: 5px;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Math Quiz</h1>
+  <form id="quizForm">
+    <div id="quizContainer"></div>
+    <button type="button" onclick="checkAnswers()">Check Answers</button>
+  </form>
+  <div id="score" style="margin-top: 20px; font-size: 18px;"></div>
+
+  <script>
+    const questions = [
+      "(-8) × (-7) + 2 × (-10)",
+      "6 - 7 + (-8) - 7",
+      "(-13) × 3 - 9",
+      "9 × 2 / (8 - 5)",
+      "27 / ((-5) + 3 - 1)",
+      "(13 × 5 - (-5) × 10) / 10",
+      "(-5) × 10 - 4 × (-9)",
+      "(-2)(9 + (-8) - 6)",
+      "30 × (-7) + 6 - 9",
+      "((-1) - (-9) - (-7)) × (-6)",
+      "(-2) - 7 × (-6) - (-5)",
+      "(2 + (-1)^2) × 5",
+      "-20 ÷ 2 + 6 - 6",
+      "(-9) × 6 + 7 - (-9)",
+      "12 × (-6) + 9 - 9",
+      "8 + (-2) - (-4) × 2",
+      "(2 - (-10))(2 - 1)",
+      "(-10) - (5 - 3) × 4",
+      "(-2)^2 - 3 × 6",
+      "8 × (-5) - ((-9) - 4)",
+      "-8 × 3 - 7 - 4",
+      "(-1) + (-1)^3 - 10",
+      "7 - 10 × (-10) + 7",
+      "25 ÷ 13 × 5",
+      "12 ÷ 6 - (-4) × 9",
+      "-4 × (-3) - (-8) - 6",
+      "((-1) - (-3)) × 2 - 1",
+      "1 - (-8) + (-2) + 6",
+      "4 + 3 - (-4 - 4)",
+      "9 × 13 - (-8)",
+      "(-2) - 9 - 9 - 9",
+      "(-3) × (-3) + 1 - 3",
+      "(-9) - 6 - 7 × 4",
+      "30 × ((-6) - (-3)) × (-1)",
+      "10 + 1 - (-9) - (-10)",
+      "3 - 3 + 6 - 8",
+      "(-4) × 2 - 1",
+      "28 + 6 - 2 - 4",
+      "2 - (-10) + 4 × 9",
+      "4 + 7 + 9 - 3",
+      "(-4) - 5 - 5 - 3",
+      "((-10) - (-2)) × 10 - 1",
+      "(-8) - (10 - 5) - 5",
+      "5 - 12 × (-3) + 1",
+      "(-7) - ((-7) - 2) - (-10)",
+      "6 × 3 - 7 × 4",
+      "4 × 4 - ((-6) + 6)",
+      "(-7) + 10 × 2 - 10",
+      "8 + (3 - 7)^2",
+      "(-4) - (-9) × (5 - 10)"
+    ];
+
+    const answers = [
+      36, -16, -48, 6, -27, 9, -14, 10, -213, -90,
+      50, 15, -10, -38, -66, 18, 12, -18, -14, 1,
+      1, -12, 114, 9, 38, 4, -4, 13, 6, 125,
+      -29, 7, -43, 90, 30, -2, -9, 28, 48, 17,
+      -17, 79, -18, 37, 12, -10, 16, 3, 24, -49
+    ];
+
+    function renderQuestions() {
+      const container = document.getElementById('quizContainer');
+      questions.forEach((q, i) => {
+        const formatted = q.replace(/\//g, '\\div'); // optional formatting
+        container.innerHTML += `
+          <div class="question">
+            <label for="q${i}">Q${i + 1}) \\(${formatted}\\)</label><br>
+            <input type="text" id="q${i}" />
+            <span id="result${i}"></span>
+          </div>
+        `;
+      });
+      MathJax.typeset(); // render LaTeX
+    }
+
+    function checkAnswers() {
+      let score = 0;
+      questions.forEach((_, i) => {
+        const userAnswer = document.getElementById(`q${i}`).value.trim();
+        const resultSpan = document.getElementById(`result${i}`);
+        if (parseInt(userAnswer) === answers[i]) {
+          resultSpan.innerHTML = "✔️";
+          resultSpan.className = "correct";
+          score++;
+        } else {
+          resultSpan.innerHTML = `❌ (Correct: ${answers[i]})`;
+          resultSpan.className = "incorrect";
+        }
+      });
+      document.getElementById("score").innerText = `Your Score: ${score} / ${questions.length}`;
+    }
+
+    renderQuestions();
+  </script>
+</body>
+</html>
