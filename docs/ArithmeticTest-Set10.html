@@ -43,7 +43,7 @@
   <button type="button" onclick="submitQuiz()">Submit</button>
   
   <script>
-    cconst set10 = {
+    const set10 = {
   questions: [
     "1) 5 + 18 ÷ 6", "2) 5 + 4 + 2", "3) 2 × 4 ÷ 2", "4) (15 ÷ 5)²", "5) (4 ÷ 2)²",
     "6) 10 ÷ 5 − 1", "7) 6 × 5 − 3", "8) 3 + 3 × 2", "9) 2 × 12 ÷ 3", "10) 5 − 8 ÷ 2",
@@ -85,7 +85,7 @@
       const formData = new FormData(form);
       let score = 0;
 
-      set9.answers.forEach((ans, i) => {
+      set10.answers.forEach((ans, i) => {
         const userInput = formData.get(`q${i}`);
         const inputField = document.querySelector(`[name="q${i}"]`);
         const qDiv = document.getElementById(`question-${i}`);
