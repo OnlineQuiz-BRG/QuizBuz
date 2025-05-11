@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Arithmetic Test - Set 10</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f9f9f9;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    button, input[type="text"] {
+      padding: 8px;
+      margin: 5px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .question {
+      margin: 10px 0;
+      padding: 5px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .incorrect {
+      background-color: #ffe6e6;
+      border-left: 4px solid red;
+      padding-left: 10px;
+    }
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2a7;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Arithmetic Test - Set 10</h2>
+  <div id="result">Your Score: ___</div>
+  <form id="quizForm"></form>
+  <button type="button" onclick="submitQuiz()">Submit</button>
+  
+  <script>
+    cconst set10 = {
+  questions: [
+    "1) 5 + 18 ÷ 6", "2) 5 + 4 + 2", "3) 2 × 4 ÷ 2", "4) (15 ÷ 5)²", "5) (4 ÷ 2)²",
+    "6) 10 ÷ 5 − 1", "7) 6 × 5 − 3", "8) 3 + 3 × 2", "9) 2 × 12 ÷ 3", "10) 5 − 8 ÷ 2",
+    "11) 2³ − 3", "12) (2²)²", "13) (10 × 2) ÷ 5", "14) 5 + 12 ÷ 6", "15) 6² − 5",
+    "16) 6 × 5 ÷ 5", "17) 4 × 6 − 1", "18) (8 ÷ 2)²", "19) (1 + 5) × 5", "20) 1 + 6 − 1",
+    "21) 3 + 5 × 5", "22) 1 + 2 + 2", "23) 4 − 1 + 3", "24) (4 × 2) ÷ 4", "25) 5 − (3 − 2)",
+    "26) 6 × 1³", "27) 2 + 4 − 2", "28) 4 + 6 − 6", "29) 18 ÷ (3 + 3)", "30) 4 − 1 − 2",
+    "31) 6 + 5 + 1", "32) (5 − 2)²", "33) 6 × 10 ÷ 5", "34) 6(6 − 2)", "35) 4 + 2 − 5",
+    "36) 5(1 + 2)", "37) 6 − 3 + 4", "38) 3 × 3 − 4", "39) 3 + 6 ÷ 2", "40) 1 + 4 − 2",
+    "41) 1 − (1 − 1)", "42) 6 + 4 − 2", "43) 1 + 6 × 2", "44) 2 × 2 × 2", "45) 18 ÷ (2 × 3)",
+    "46) (9 × 2) ÷ 3", "47) (4 + 2) × 6", "48) 3(5 + 2)", "49) (6 − 5) × 4", "50) 4 − 1²"
+  ],
+  answers: [
+    8, 11, 4, 9, 4,
+    1, 27, 9, 8, 1,
+    5, 16, 4, 7, 31,
+    6, 23, 16, 30, 6,
+    28, 5, 6, 2, 4,
+    6, 4, 4, 3, 1,
+    12, 9, 12, 24, 1,
+    15, 7, 5, 6, 3,
+    1, 8, 13, 8, 3,
+    6, 36, 21, 4, 3
+  ]
+    };
+
+    const form = document.getElementById('quizForm');
+    const resultDiv = document.getElementById('result');
+
+    set10.questions.forEach((q, i) => {
+      const div = document.createElement('div');
+      div.className = "question";
+      div.id = `question-${i}`;
+      div.innerHTML = `${q}<br><input type="text" name="q${i}" />`;
+      form.appendChild(div);
+    });
+
+    function submitQuiz() {
+      const formData = new FormData(form);
+      let score = 0;
+
+      set9.answers.forEach((ans, i) => {
+        const userInput = formData.get(`q${i}`);
+        const inputField = document.querySelector(`[name="q${i}"]`);
+        const qDiv = document.getElementById(`question-${i}`);
+
+        if (parseInt(userInput) === ans) {
+          qDiv.classList.remove("incorrect");
+        } else {
+          qDiv.classList.add("incorrect");
+          const correction = document.createElement("div");
+          correction.innerHTML = `<strong>Incorrect.</strong> Your answer: ${userInput || "(blank)"}. Correct: ${ans}.`;
+          qDiv.appendChild(correction);
+        }
+
+        if (parseInt(userInput) === ans) score++;
+      });
+
+      resultDiv.textContent = `Your Score: ${score} / ${set10.answers.length}`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script> 
+</body>
+</html>
