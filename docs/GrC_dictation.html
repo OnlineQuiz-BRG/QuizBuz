@@ -16,6 +16,40 @@
     position: relative;
   }
 
+  #instructions-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-left: 6px solid #007bff;
+    padding: 1rem 1.5rem;
+    max-width: 600px;
+    font-size: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  #timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FF5733; /* Orange Color */
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #d63384;
+  }
+
   #words-container {
     width: 100%;
     max-width: 600px;
@@ -26,50 +60,6 @@
     height: 300px;
     overflow-y: auto;
     scroll-behavior: smooth;
-  }
-
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #d63384;
-  }
-
-  #timer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-
-  .timer {
-    font-size: 4rem;
-    font-weight: bold;
-    color: white;
-    margin: 0;
-  }
-
-  .animation {
-    width: 200px;
-    height: 200px;
-    margin-top: 20px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-      opacity: 0.8;
-    }
-    50% {
-      transform: scale(1.2);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 0.8;
-    }
   }
 
   .word {
@@ -91,20 +81,17 @@
 </style>
 </head>
 <body>
-<div style="
-  background-color: #fff;
-  border-left: 6px solid #007bff;
-  padding: 1rem 1.5rem;
-  max-width: 600px;
-  font-size: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-bottom: 1.5rem;">
-<p><strong>Instructions:</strong></p>
-<ol style="padding-left: 1.2rem;">
-  <li>Click the ▶️ <strong> Play </strong> button below.</li>
-  <li>Then click on <strong>👉 Start Dictation Practice</strong> to begin the Dictation.</li>
-</ol>
+<div id="instructions-container">
+  <div>
+    <p><strong>Instructions:</strong></p>
+    <ol style="padding-left: 1.2rem;">
+      <li>Click the ▶️ <strong> Play </strong> button below.</li>
+      <li>Then click on <strong>👉 Start Dictation Practice</strong> to begin the Dictation.</li>
+    </ol>
+  </div>
+  <div id="timer-container">
+    <h1 class="timer">10:00</h1>
+  </div>
 </div>
 
 <h3>Listen carefully and Write</h3>
@@ -124,11 +111,6 @@
    transition: background-color 0.3s ease;">
    👉 Start Dictation Practice
  </h1>
-</div>
-
-<div id="timer-container">
-  <h1 class="timer">10:00</h1>
-  <div class="animation"></div>
 </div>
 
 <div id="words-container"></div>
