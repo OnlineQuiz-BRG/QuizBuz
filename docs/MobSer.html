@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sri Srinivasa Mobile Service Booking</title>
+  <title>Mobile Service Booking</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -92,35 +92,35 @@
       You will be contacted within 1 hour after submission.
     </div>
   </div>
+
   <script>
-  const form = document.getElementById('bookingForm');
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
+    const form = document.getElementById('bookingForm');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-    const data = {
-      name: form.name.value,
-      phone: form.phone.value,
-      device: form.device.value,
-      issue: form.issue.value,
-      pickup: form.pickup.value
-    };
+      const data = {
+        name: form.name.value,
+        phone: form.phone.value,
+        device: form.device.value,
+        issue: form.issue.value,
+        pickup: form.pickup.value
+      };
 
-    const response = await fetch('https://script.google.com/macros/s/AKfycbxnnM3-9RJgZoKjUi8XlwE0zCe65ZcTwaTa0AwBPVUBKjMeqK3m-eOC638hanokzWFO/exec', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxnnM3-9RJgZoKjUi8XlwE0zCe65ZcTwaTa0AwBPVUBKjMeqK3m-eOC638hanokzWFO/exec', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        alert('✅ Service booking submitted successfully!');
+      } else {
+        alert('❌ Something went wrong. Please try again.');
       }
     });
-
-    if (response.ok) {
-      form.reset();
-      alert('✅ Service booking submitted successfully!');
-    } else {
-      alert('❌ Something went wrong. Please try again.');
-    }
-  });
-</script>
-
+  </script>
 </body>
 </html>
