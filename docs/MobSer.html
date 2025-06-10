@@ -56,11 +56,24 @@
       font-size: 14px;
       color: #888;
     }
+    .hidden {
+      display: none;
+    }
+    .success-message {
+      text-align: center;
+      font-size: 18px;
+      color: #155724;
+      background-color: #d4edda;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>📱 Sri Srinivasa Mobile Service Booking</h2>
+
     <form id="bookingForm">
       <label for="name">Your Name</label>
       <input type="text" id="name" name="name" required />
@@ -88,6 +101,13 @@
 
       <button type="submit">📩 Book Service</button>
     </form>
+
+    <div id="successBox" class="success-message hidden">
+      ✅ Your service request has been submitted successfully!
+      <br /><br />
+      <button onclick="resetForm()">📋 Book Another Service</button>
+    </div>
+
     <div class="footer">
       You will be contacted within 1 hour after submission.
     </div>
@@ -95,6 +115,8 @@
 
   <script>
     const form = document.getElementById('bookingForm');
+    const successBox = document.getElementById('successBox');
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
@@ -107,23 +129,28 @@
       };
 
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwyLlAHBIUffoYpcJJZTDIgOtiP_0gpi6o-5EoBR2MqpNb2JNgXBkDwUa4-rK3gC1mp/exec', {
+        await fetch('https://script.google.com/macros/s/AKfycbwyLlAHBIUffoYpcJJZTDIgOtiP_0gpi6o-5EoBR2MqpNb2JNgXBkDwUa4-rK3gC1mp/exec', {
           method: 'POST',
-          mode: 'no-cors',  // Prevents browser from blocking
+          mode: 'no-cors',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(data)
         });
 
-        // Even though no-cors prevents reading response, assume success
-        alert("✅ Service booking submitted successfully!");
-        form.reset();
+        form.classList.add('hidden');
+        successBox.classList.remove('hidden');
       } catch (error) {
-        alert("❌ Failed to submit. Please check your internet or try again.");
-        console.error("Error submitting form:", error);
+        alert("❌ Failed to submit. Please try again.");
+        console.error(error);
       }
     });
+
+    function resetForm() {
+      form.reset();
+      form.classList.remove('hidden');
+      successBox.classList.add('hidden');
+    }
   </script>
 </body>
 </html>
