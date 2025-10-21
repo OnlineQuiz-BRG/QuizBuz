@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Class 10 English – A Letter to God (MCQ Quiz)</title>
+<style>
+  body { font-family: Arial, Helvetica, sans-serif; line-height:1.5; margin:0; padding:0; background:#f6f8fb; color:#222; }
+  .container{max-width:900px;margin:30px auto;background:#fff;padding:22px;border-radius:10px;box-shadow:0 6px 20px rgba(30,40,60,0.08);}
+  h1{margin:0 0 8px;font-size:22px}
+  p.lead{margin:0 0 18px;color:#444}
+  .video-section{margin-bottom:22px;padding:12px;background:#f0f4ff;border-left:4px solid #2563eb;border-radius:10px}
+  .video-section p{margin-bottom:10px;font-weight:600}
+  .video-wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.1);}
+  .video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+  .watch-controls{display:flex;gap:10px;align-items:center;margin-top:10px}
+  .student-info{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+  .student-info input{flex:1 1 200px;padding:8px;border:1px solid #cbd5e1;border-radius:6px}
+  .qwrap{margin-top:12px}
+  .question{padding:12px;border-radius:8px;border:1px solid #edf2f7;background:#fcfdff;margin-bottom:10px}
+  .qtext{font-weight:600}
+  .options{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+  label.option{padding:8px;border-radius:6px;border:1px solid transparent;display:flex;align-items:center;gap:8px;cursor:pointer}
+  input[type="radio"]{transform:scale(1.05);margin-right:8px}
+  .nav{display:flex;justify-content:space-between;margin-top:14px;align-items:center}
+  button{padding:10px 14px;border-radius:8px;border:0;background:#2563eb;color:#fff;cursor:pointer}
+  button[disabled]{opacity:0.5;cursor:default}
+  .page-indicator{color:#444}
+  .results{margin-top:18px;padding:12px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0}
+  .correct{color:green;font-weight:700}
+  .incorrect{color:red;font-weight:700}
+  .answer-line{margin-top:8px;padding:10px;border-radius:6px;background:#fff;border:1px solid #eef2ff}
+  .meta{font-size:13px;color:#555;margin-bottom:8px}
+  .small{font-size:13px;color:#666}
+  .center {text-align:center}
+  @media(max-width:640px){ .student-info{flex-direction:column} }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Class 10 English – A Letter to God (MCQ Quiz)</h1>
+
+  <div class="video-section" id="videoSection">
+    <p>🎥 <strong>Watch the video "<em>A Letter to God</em>"</strong> before starting the quiz:</p>
+    <div class="video-wrapper">
+      <!-- Embedded Google Drive preview -->
+      <iframe 
+        id="driveVideo"
+        src="https://drive.google.com/file/d/1e-it3pJG9wMRBA0IFmv31xoN613Ec72M/preview" 
+        allow="autoplay; encrypted-media" 
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="watch-controls">
+      <!-- Since we can't reliably detect playback inside cross-origin iframe, require student to confirm -->
+      <label style="display:flex;align-items:center;gap:8px;">
+        <input type="checkbox" id="watchedCheckbox" />
+        <span>I have watched the video</span>
+      </label>
+
+      <button id="startBtn" disabled>Start Quiz</button>
+
+      <div style="margin-left:auto;font-size:13px;color:#555">
+        Tip: after checking the box, click <strong>Start Quiz</strong>.
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">Please enter student details, navigate the quiz and click Submit at the end. Correct answers will be shown after submission.</p>
+
+  <!-- these sections are initially hidden until Start Quiz is clicked -->
+  <div id="preQuiz" style="display:none">
+    <div class="student-info">
+      <input id="studentName" placeholder="Student Name" />
+      <input id="rollNo" placeholder="Roll No" />
+      <input id="className" placeholder="Class" />
+    </div>
+
+    <div id="quizArea"></div>
+
+    <div class="nav">
+      <div>
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+      </div>
+      <div class="page-indicator"><span id="pageInfo"></span></div>
+    </div>
+
+    <div style="margin-top:12px;text-align:right">
+      <button id="submitBtn">Submit Quiz</button>
+    </div>
+
+    <div id="results" class="results" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+/*
+  Full question bank preserved as provided by you.
+  The quiz will take only the first 60 items (questionsAll.slice(0,60)).
+  If you want more/fewer change the .slice(0,60) line.
+*/
+
+const questionsAll = [
+  {
+    q: "The postmaster to help Lencho by giving him ——- as a reply from God.",
+    options: ["Money","Crops","Letter","Gold"],
+    answer: 0
+  },
+  {
+    q: "What is the irony in this lesson?",
+    options: ["Lencho was sad after the hailstorm even though he was the one waiting for a shower","Postmaster laughed at Lencho but still helped arrange money for him","Lencho blamed the post office employees who in fact helped him","there is no irony"],
+    answer: 2
+  },
+  {
+    q: "Where was Lencho’s house situated?",
+    options: ["bottom of the hill","top of a hill","top of a plateau","in a city"],
+    answer: 1
+  },
+  {
+    q: "What did Lencho hope for?",
+    options: ["A good shower of rain for his crop.","A new motorcycle","A tractor","None of the Above"],
+    answer: 0
+  },
+  {
+    q: "What were Lencho’s feeling when the hailstorm stopped?",
+    options: ["Utter Sadness","Utter Happy","Utter Sorrow","None of the Above"],
+    answer: 0
+  },
+  {
+    q: "The story sets in –",
+    options: ["Latin America","Australia","Europe","Africa"],
+    answer: 0
+  },
+  {
+    q: "The postman at the post office laughed because",
+    options: ["he received a parcel","he had irritation","the postman said something","the letter was addressed ‘To God’"],
+    answer: 3
+  },
+  {
+    q: "What was the only thing that the Earth needed according to Lencho?",
+    options: ["a shower","a snowfall","strong winds","sunlight"],
+    answer: 0
+  },
+  {
+    q: "Lencho started writing a letter to God on",
+    options: ["Monday morning","Sunday morning","Saturday morning","Sunday afternoon"],
+    answer: 1
+  },
+  {
+    q: "Based on the details of the house’s location, how can it best be described?",
+    options: ["Majestic","Imposing","Solitary","Unique"],
+    answer: 2
+  },
+  {
+    q: "Why Lencho compares the rain drops to new coins?",
+    options: ["Because they are real money.","Because they were round in shape and almost of the same size.","Because he can exchange them with money.","None of the Above"],
+    answer: 1
+  },
+  {
+    q: "Why did Lencho need money?",
+    options: ["To buy a tractor","To save his family from hunger","To buy a new phone.","To buy a buffalo."],
+    answer: 1
+  },
+  {
+    q: "Who does Lencho have complete faith in?",
+    options: ["His Wife","The Postmaster","One of the farmer","The God"],
+    answer: 3
+  },
+  {
+    q: "Which crop was growing on Lencho’s fields?",
+    options: ["Corn","Barley","Rice","None of the above"],
+    answer: 0
+  },
+  {
+    q: "How did Lencho decide to contact his last resort?",
+    options: ["by visiting them personally","through a letter","through e-mail","through fax"],
+    answer: 1
+  },
+  {
+    q: "The field looked as if it were covered in _.",
+    options: ["salt","locusts","sugar","ice"],
+    answer: 0
+  },
+  {
+    q: "How much money was the postmaster able to arrange?",
+    options: ["100 pesos","Nil","1000 pesos","70 pesos"],
+    answer: 3
+  },
+  {
+    q: "Why did the postmaster decide to reply to Lencho’s letter?",
+    options: ["he was a good man","he felt empathetic","to preserve Lencho’s faith in God","all of the above"],
+    answer: 2
+  },
+  {
+    q: "Lencho was exchanging the letter to God through",
+    options: ["Post office","A good friend","Dove","Computer internet"],
+    answer: 0
+  },
+  {
+    q: "Why was Lencho not surprised on seeing the money in the envelope?",
+    options: ["he was too sad to acknowledge it","he had unwavering faith in God","he was an ungrateful man","none of the above"],
+    answer: 1
+  },
+  {
+    q: "How much money does Lencho need?",
+    options: ["Fifty Pesos","Hundred Pesos","Two Hundred Pesos","Five Hundred Pesos."],
+    answer: 1
+  },
+  {
+    q: "From the top of the hill he can see his ready to harvest cornfield along with –",
+    options: ["Forest","Village","River","Vast field"],
+    answer: 2
+  },
+  {
+    q: "How much money did Lencho ask for?",
+    options: ["100 pesos","1000 pesos","10 pesos","500 pesos"],
+    answer: 0
+  },
+  {
+    q: "Lencho’s letter included",
+    options: ["details of his problems.","description of the post office.","belief of being looted.","List of further demands."],
+    answer: 3
+  },
+  {
+    q: "Lencho’s hopes were belied because:",
+    options: ["the sunlight was enough","the rain was still going on","the hail lasted for an hour","the children were unsuccessful"],
+    answer: 2
+  },
+  {
+    q: "On seeing the letter, the postmaster was moved by Lencho’s __",
+    options: ["unwavering faith","handwriting","love for God","determination"],
+    answer: 0
+  },
+  {
+    q: "Lencho compared the quantum of damage with",
+    options: ["Attack by rats","Attack by crows","Plague by locusts","None of the above"],
+    answer: 2
+  },
+  {
+    q: "Find the word which means ‘very closely’.",
+    options: ["Promisingly","Entire","Intimately","Towards"],
+    answer: 2
+  },
+  {
+    q: "Who is the author of the lesson ‘A Letter to God’?",
+    options: ["G.L. Fuentes","J.k. Rowling","William Shakespeare","Roald Dahl"],
+    answer: 0
+  },
+  {
+    q: "What is the irony in this lesson?",
+    options: ["Lencho was sad after the hailstorm even though he was the one waiting for a shower","Postmaster laughed at Lencho but still helped arrange money for him","Lencho blamed the post office employees who in fact helped him","there is no irony"],
+    answer: 2
+  },
+  {
+    q: "Where did Lencho expect the downpour to come from?",
+    options: ["north","north-east","north-west","south-east"],
+    answer: 1
+  },
+  {
+    q: "Large droplets were equivalent to –",
+    options: ["Five cents coin","One cent coin","Ten cents coin","Two cent coin"],
+    answer: 2
+  },
+  {
+    q: "Why was Lencho not surprised on seeing the money in the envelope?",
+    options: ["he was too sad to acknowledge it","he had unwavering faith in God","he was an ungrateful man","none of the above"],
+    answer: 1
+  },
+  {
+    q: "Which literary device has been used in ‘They are new coins’?",
+    options: ["Simile","Metaphor","Personification","Alliteration"],
+    answer: 1
+  },
+  {
+    q: "Why did the postmaster decide to reply to Lencho’s letter?",
+    options: ["he was a good man","he felt empathetic","to preserve Lencho’s faith in God","all of the above"],
+    answer: 2
+  },
+  {
+    q: "What do you mean by huge mountains of clouds?",
+    options: ["Very high clouds","Very dark clouds","Clouds promising heavy rains","Clouds making hilly pattern"],
+    answer: 2
+  },
+  {
+    q: "Where was Lencho's house situated?",
+    options: ["On a hill","In a valley","By a river","In a town"],
+    answer: 1
+  },
+  {
+    q: "What did Lencho compare the large raindrops with?",
+    options: ["Bullets","Coins","Birds","Stones"],
+    answer: 1
+  },
+  {
+    q: "Which crop was growing in Lencho's fields?",
+    options: ["Corn","Wheat","Rice","Beans"],
+    answer: 0
+  },
+  {
+    q: "What destroyed Lencho's fields?",
+    options: ["A hailstorm","A tornado","A flood","A drought"],
+    answer: 0
+  },
+  {
+    q: "What was the only hope left in the hearts of Lencho's family?",
+    options: ["Help from God","Help from the government","Help from their neighbors","Help from themselves"],
+    answer: 0
+  },
+  {
+    q: "Why did the postmaster decide to reply to Lencho's letter?",
+    options: ["He was moved by Lencho's faith.","He wanted to help Lencho.","He thought it was funny.","He wanted to teach Lencho a lesson."],
+    answer: 0
+  },
+  {
+    q: "What did the postmaster do with the money from the other staff",
+    options: ["He kept it for himself.","He put it in an envelope and sent it to Lencho.","He gave it to the church.","He gave it to the poor."],
+    answer: 1
+  },
+  {
+    q: "What did Lencho think of the post-office employees?",
+    options: ["He thought they were kind and generous.","He thought they were lazy and incompetent.","He thought they were crooks","He thought they were all in cahoots with each other."],
+    answer: 2
+  },
+  {
+    q: "Why did Lencho become angry when he counted the money?",
+    options: ["There was less money than he had asked for.","The money was in different denominations.","The money was dirty.","The money was counterfeit."],
+    answer: 0
+  },
+  {
+    q: "What did Lencho do when he realized that the money was not from God?",
+    options: ["He wrote another letter to God, demanding the rest of the money.","He went to the postmaster and demanded an explanation.","He went to the police and filed a complaint.","He gave up and went back to work"],
+    answer: 0
+  },
+  {
+    q: "The field looked as if it were covered in _______.",
+    options: ["salt","locusts","sugar","ice"],
+    answer: 3
+  },
+  {
+    q: "The postmaster was a fat, amiable man. What is the meaning of amiable?",
+    options: ["rude","helpful","friendly","enthusiastic"],
+    answer: 2
+  },
+  {
+    q: "Why was Lencho satisfied?",
+    options: ["On seeing a new tractor in his field.","On seeing a new buffalo.","On seeing the field of ripe corn with flowers.","None of the Above"],
+    answer: 2
+  },
+  {
+    q: "The postmaster to help lencho by giving him ——- as a reply from God.",
+    options: ["Money","Crops","Letter","Gold"],
+    answer: 0
+  },
+  {
+    q: "What is the irony in this lesson?",
+    options: ["Lencho was sad after the hailstorm even though he was the one waiting for a shower","Postmaster laughed at Lencho but still helped arrange money for him","Lencho blamed the post office employees who in fact helped him","there is no irony"],
+    answer: 2
+  },
+  {
+    q: "What else did the reply demanded apart from goodwill, ink and paper?",
+    options: ["lost crop","money","God’s signature","new seeds"],
+    answer: 1
+  },
+  {
+    q: "What type of conflict does the chapter highlight?",
+    options: ["conflict between nature and humans","conflict among humans","conflict among God and nature","both 1 and 2"],
+    answer: 3
+  },
+  {
+    q: "What did the postmaster feel on experiencing Lencho receive the letter?",
+    options: ["contended","proud","overwhelmed","all of the above"],
+    answer: 0
+  },
+  {
+    q: "Mention the reason why post master answered the letter?",
+    options: ["Not to shake the writer’s faith","To make the fun of writer","To irritate the writer","To mock at the writer"],
+    answer: 0
+  },
+  {
+    q: "The postman at the post office laughed because",
+    options: ["he received a parcel","he had irritation","the postman said something","the letter was addressed ‘To God’"],
+    answer: 3
+  },
+  {
+    q: "What was the only thing that the Earth needed according to Lencho?",
+    options: ["a shower","a snowfall","strong winds","sunlight"],
+    answer: 0
+  },
+  {
+    q: "Lencho started writing a letter to god on –",
+    options: ["Monday morning","Sunday morning","Saturday morning","Sunday afternoon"],
+    answer: 1
+  },
+  {
+    q: "Choose the characteristics displayed by the person who had written the letter.",
+    options: ["Dedication","Faith","Organized","Authoritative"],
+    answer: 1
+  },
+  {
+    q: "What did Lencho ask for in his second letter?",
+    options: ["more money","remaining amount and not send it by mail","remaining amount and send it by mail only","he didn’t ask for anything"],
+    answer: 1
+  }
+];
+
+// Use only first 60 questions (keeps same bank but enforces quiz size)
+const questions = questionsAll.slice(0, 60);
+
+const perPage = 10;
+let page = 0;
+const totalPages = Math.ceil(questions.length / perPage);
+const quizArea = document.getElementById('quizArea');
+const pageInfo = document.getElementById('pageInfo');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const submitBtn = document.getElementById('submitBtn');
+const resultsDiv = document.getElementById('results');
+
+function letter(i){ return ['A','B','C','D'][i] || '' }
+
+function renderPage(){
+  quizArea.innerHTML = '';
+  const start = page * perPage;
+  const end = Math.min(start + perPage, questions.length);
+  for(let i=start;i<end;i++){
+    const qi = questions[i];
+    const qbox = document.createElement('div');
+    qbox.className = 'question';
+    const qnum = i+1;
+    qbox.innerHTML = '<div class="qtext">Q' + qnum + '. ' + qi.q + '</div>';
+    const optdiv = document.createElement('div');
+    optdiv.className = 'options';
+    qi.options.forEach((opt, idx) => {
+      const id = 'q' + i + '_opt' + idx;
+      const label = document.createElement('label');
+      label.className = 'option';
+      label.htmlFor = id;
+      label.innerHTML = '<input type="radio" name="q' + i + '" id="' + id + '" value="' + idx + '"> <span>' + letter(idx) + ') ' + opt + '</span>';
+      optdiv.appendChild(label);
+    });
+    qbox.appendChild(optdiv);
+    quizArea.appendChild(qbox);
+  }
+  pageInfo.innerText = 'Page ' + (page+1) + ' of ' + totalPages;
+  prevBtn.disabled = page === 0;
+  nextBtn.disabled = page === totalPages - 1;
+}
+
+prevBtn.addEventListener('click', () => { if(page>0){ page--; renderPage(); window.scrollTo({top:0,behavior:"smooth"}); }});
+nextBtn.addEventListener('click', () => { if(page < totalPages-1){ page++; renderPage(); window.scrollTo({top:0,behavior:"smooth"}); }});
+
+function getResponses(){
+  const resp = [];
+  for(let i=0;i<questions.length;i++){
+    const els = document.getElementsByName('q'+i);
+    let val = null;
+    for(const el of els){ if(el.checked){ val = parseInt(el.value); break; } }
+    resp.push(val);
+  }
+  return resp;
+}
+
+submitBtn.addEventListener('click', () => {
+  const name = document.getElementById('studentName').value.trim();
+  const roll = document.getElementById('rollNo').value.trim();
+  const cls = document.getElementById('className').value.trim();
+  if(!name || !roll || !cls){
+    if(!confirm('Student details are incomplete. Continue anyway?')) return;
+  }
+  const resp = getResponses();
+  let score = 0;
+  const details = [];
+  resp.forEach((r, idx) => {
+    const correct = questions[idx].answer;
+    const isCorrect = r === correct;
+    if(isCorrect) score++;
+    details.push({ qIndex: idx, selected: r, correct });
+  });
+
+  // show results
+  resultsDiv.style.display = 'block';
+  resultsDiv.innerHTML = '<div class="meta"><strong>Student:</strong> ' + (name||'—') + ' &nbsp; <strong>Roll:</strong> ' + (roll||'—') + ' &nbsp; <strong>Class:</strong> ' + (cls||'—') + '</div>';
+  resultsDiv.innerHTML += '<div style="font-size:18px;font-weight:700">Score: ' + score + ' / ' + questions.length + '</div>';
+  resultsDiv.innerHTML += '<div class="small" style="margin-top:6px">Correct answers are shown below. Your selected answer is indicated beside each question.</div>';
+
+  // Detailed answers
+  details.forEach(d => {
+    const qi = questions[d.qIndex];
+    const qnum = d.qIndex + 1;
+    const sel = (d.selected === null) ? 'No answer' : letter(d.selected) + ') ' + qi.options[d.selected];
+    const corr = letter(d.correct) + ') ' + qi.options[d.correct];
+    const mark = (d.selected === d.correct) ? '<span class="correct">✔ Correct</span>' : '<span class="incorrect">✖ Incorrect</span>';
+    resultsDiv.innerHTML += '<div class="answer-line"><div><strong>Q' + qnum + '.</strong> ' + qi.q + '</div>';
+    resultsDiv.innerHTML += '<div style="margin-top:6px"><strong>Your answer:</strong> ' + (d.selected===null? '<em>None</em>' : sel) + ' &nbsp; ' + mark + '</div>';
+    resultsDiv.innerHTML += '<div style="margin-top:6px"><strong>Correct Answer:</strong> ' + corr + '</div></div>';
+  });
+
+  // scroll to results
+  resultsDiv.scrollIntoView({behavior:'smooth'});
+});
+
+// START QUIZ logic: enable start when checkbox checked, reveal quiz when Start clicked
+const watchedCheckbox = document.getElementById('watchedCheckbox');
+const startBtn = document.getElementById('startBtn');
+const preQuiz = document.getElementById('preQuiz');
+
+watchedCheckbox.addEventListener('change', (e) => {
+  startBtn.disabled = !e.target.checked;
+});
+
+startBtn.addEventListener('click', () => {
+  // reveal quiz area and render first page
+  preQuiz.style.display = 'block';
+  // scroll to quiz
+  preQuiz.scrollIntoView({behavior:'smooth'});
+  // render page (first time)
+  page = 0;
+  renderPage();
+  // optionally disable start controls
+  startBtn.disabled = true;
+  watchedCheckbox.disabled = true;
+});
+
+</script>
+</body>
+</html>
