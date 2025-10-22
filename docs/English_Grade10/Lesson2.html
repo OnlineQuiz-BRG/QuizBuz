@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Class 10 English – The Sermon at Benares (MCQ Quiz)</title>
+<style>
+  body { font-family: Arial, Helvetica, sans-serif; line-height:1.5; margin:0; padding:0; background:#f6f8fb; color:#222; }
+  .container{max-width:900px;margin:30px auto;background:#fff;padding:22px;border-radius:10px;box-shadow:0 6px 20px rgba(30,40,60,0.08);}
+  h1{margin:0 0 8px;font-size:22px}
+  p.lead{margin:0 0 18px;color:#444}
+  .video-section{margin-bottom:22px;padding:12px;background:#f0f4ff;border-left:4px solid #2563eb;border-radius:10px}
+  .video-section p{margin-bottom:10px;font-weight:600}
+  .video-wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.1);}
+  .video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+  .watch-controls{display:flex;gap:10px;align-items:center;margin-top:10px}
+  .student-info{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+  .student-info input{flex:1 1 200px;padding:8px;border:1px solid #cbd5e1;border-radius:6px}
+  .qwrap{margin-top:12px}
+  .question{padding:12px;border-radius:8px;border:1px solid #edf2f7;background:#fcfdff;margin-bottom:10px}
+  .qtext{font-weight:600}
+  .options{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+  label.option{padding:8px;border-radius:6px;border:1px solid transparent;display:flex;align-items:center;gap:8px;cursor:pointer}
+  input[type="radio"]{transform:scale(1.05);margin-right:8px}
+  .nav{display:flex;justify-content:space-between;margin-top:14px;align-items:center}
+  button{padding:10px 14px;border-radius:8px;border:0;background:#2563eb;color:#fff;cursor:pointer}
+  button[disabled]{opacity:0.5;cursor:default}
+  .page-indicator{color:#444}
+  .results{margin-top:18px;padding:12px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0}
+  .correct{color:green;font-weight:700}
+  .incorrect{color:red;font-weight:700}
+  .answer-line{margin-top:8px;padding:10px;border-radius:6px;background:#fff;border:1px solid #eef2ff}
+  .meta{font-size:13px;color:#555;margin-bottom:8px}
+  .small{font-size:13px;color:#666}
+  .center {text-align:center}
+  @media(max-width:640px){ .student-info{flex-direction:column} }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Class 10 English – The Sermon at Benares (MCQ Quiz)</h1>
+
+  <div class="video-section" id="videoSection">
+    <p>🎥 <strong>Watch the video "<em>The Sermon at Benares</em>"</strong> before starting the quiz:</p>
+    <div class="video-wrapper">
+      <!-- Embedded Google Drive preview for the new video -->
+      <iframe 
+        id="driveVideo"
+        src="https://drive.google.com/file/d/1H5ZAD2RD0JEsnrLIg1Gxuw9KZqix9odZ/preview" 
+        allow="autoplay; encrypted-media" 
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="watch-controls">
+      <!-- Require student confirmation -->
+      <label style="display:flex;align-items:center;gap:8px;">
+        <input type="checkbox" id="watchedCheckbox" />
+        <span>I have watched the video</span>
+      </label>
+
+      <button id="startBtn" disabled>Start Quiz</button>
+
+      <div style="margin-left:auto;font-size:13px;color:#555">
+        Tip: after checking the box, click <strong>Start Quiz</strong>.
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">Please enter student details, navigate the quiz and click Submit at the end. Correct answers will be shown after submission.</p>
+
+  <!-- hidden until Start Quiz clicked -->
+  <div id="preQuiz" style="display:none">
+    <div class="student-info">
+      <input id="studentName" placeholder="Student Name" />
+      <input id="rollNo" placeholder="Roll No" />
+      <input id="className" placeholder="Class" />
+    </div>
+
+    <div id="quizArea"></div>
+
+    <div class="nav">
+      <div>
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+      </div>
+      <div class="page-indicator"><span id="pageInfo"></span></div>
+    </div>
+
+    <div style="margin-top:12px;text-align:right">
+      <button id="submitBtn">Submit Quiz</button>
+    </div>
+
+    <div id="results" class="results" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+/*
+  60 MCQs from the uploaded PDF (The Sermon at Benares).
+  Answers use the key you provided: (1..60)
+  Mapping: a=0, b=1, c=2, d=3. Q25 is TRUE/FALSE (F -> False -> index 1)
+*/
+
+const questions = [
+  { q: "The following is the time period of Gautam Buddha………..", options:["583 B.C to 463 B.C","563 B.C to 483 B.C","553 B.C to 483 B.C","573 B.C to 453 B.C"], answer:1 },
+  { q: "At the age of ------- Gautam Buddha got married to the princess.", options:["17 years","16 years","18 years","19 years"], answer:1 },
+  { q: "How many years did Gowtham Buddha enjoy royal life, after his marriage?", options:["10 years","15 years","5 years","8 years"], answer:0 },
+  { q: "----------------- is Gowtham Buddha's name before he became a monk?", options:["Prince Gautama","Siddartha Gowtham","Siddartha Gautama","King Gautama"], answer:0 },
+  { q: "Gautam Buddha belongs to which one of the following dynasties?", options:["Shakya clan","Gotama clan","Sudhodana clan","None of the above"], answer:0 },
+  { q: "One of the following has been popularly known for Buddhist philosophy.", options:["Panchatantra Tales","Aesop Fables","Jataka Tales","All the three"], answer:0 },
+  { q: "The sights that changed the life of the Prince Gautama are as follow: i) a sick man ii) an aged man iii) a funeral procession iv) a monk begging for alms.", options:["i only","i and ii only","i, ii, and iii only","i, ii, iii and iv"], answer:3 },
+  { q: "After his chancing upon the sufferings of the world, Prince Gautama decided to", options:["help the poor and the sick people","help the monks","bear the expenses for the dead people","seek enlightenment concerning the sorrows"], answer:3 },
+  { q: "For how many years did Gautama wander in search of enlightenment", options:["7 years","5 years","6 years","4 years"], answer:0 },
+  { q: "Which tree is popularly known as Bodhi Tree?", options:["Neem Tree","Banyan Tree","Mango Tree","Peepal Tree"], answer:3 },
+  { q: "Prince Gautama became Gautama Buddha when", options:["He wandered in search of enlightenment","He left the Royal palace in search of enlightenment.","He decided to leave his royal palace.","He completed meditation under the peepal tree"], answer:3 },
+  { q: "The other name of Gautam Buddha", options:["Shakya Muni","Khasya Muni","Sukha Muni","Vyasha Muni"], answer:0 },
+  { q: "The Birthplace of Prince Gautama is", options:["Lumbini","Kumbini","Vadodhara","Hastina"], answer:0 },
+  { q: "How many days did it take for Gautama to become enlightened?", options:["7 days","10 days","12 days","15 days"], answer:0 },
+  { q: "Identify the meaning for the word, 'Sermon'", options:["A religious speech","A religious lecture","A rigorous discourse","All of the above"], answer:3 },
+  { q: "Find out the meaning of the word, 'Inscrutable'", options:["something that can be understood.","something that can't be understood.","something that is easy to understand","something that is difficult to understand"], answer:1 },
+  { q: "According to the text, The Buddha preached his first sermon at", options:["Benares","Prayaga","Budh Gaya","Kapilavasthu"], answer:0 },
+  { q: "Kisa Gotami is ------------", options:["A wife who lost her husband.","A mother who lost a daughter","A mother who lost a son","A mother who lost her only child"], answer:3 },
+  { q: "Kisa Gotami came seeking help of Gowtham Buddha, thinking him to be", options:["An ordinary monk","a great physician","a monk with extraordinary powers","A rishi or muni with special powers"], answer:2 },
+  { q: "Kisa Gotami wanted Gowtham Buddha", options:["to bring her dead son back","to make her son conscious","to take her life and let her child live","to teach her about the inevitable nature of death"], answer:0 },
+  { q: "Gautama Buddha told Kisa Gotami to", options:["bring a handful of black oil seeds","bring a handful of almond seeds","bring a handful of mustard seeds","bring a handful of olive seeds"], answer:2 },
+  { q: "The condition laid down by Buddha to Kisa Gotami is", options:["She has to bring seeds from a house where no son is dead","She has to bring seeds from a house where no daughter is dead","She has to bring seeds from a house where no father is dead","She has to bring seeds from a house where no one is dead"], answer:3 },
+  { q: "Seeing Kisa Gotami wandering, carrying her dead child, people", options:["pitied her","thought that she became insane","felt sorry for her condition","came forward to help her and to console her for the loss"], answer:1 },
+  { q: "Find out the meaning of the word, 'Repaired' as used in the text", options:["to mend something","to repair something","to make something","having gone to a place"], answer:3 },
+  { q: "Kisa Gotami could procure what she wanted (TRUE/FALSE)", options:["True","False"], answer:1 }, // key: F -> False
+  { q: "The reply Kisa Gotami got when she had asked for the seeds", options:["Alas! The dead are few but the living are many","Alas! The living are few but the dead are many","Alas! The dead are many","Alas! The dead are few"], answer:1 },
+  { q: "Kisa Gotami became", options:["tired but still hopeful","hopeless but not tired","tired but still wanted to continue her search","tired and hopeless"], answer:3 },
+  { q: "Kisa Gotami………………….", options:["sat down at the wayside watching people come and go","sat down at the wayside watching the plants","sat down at the wayside watching some children playing with one another","sat down at the wayside watching the lights of the city"], answer:0 },
+  { q: "Kisa Gotami learnt that…………….", options:["There is no home where she would get the seeds as per her requirement","Gautama Buddha made her search for false pursuit","Death is common to all","None of the above"], answer:2 },
+  { q: "According to the Buddha, the life of mortals in this world is ………………..", options:["troubled and brief","troubled and combined with pain","troubled and brief and combined with pain","brief and with full of pain"], answer:2 },
+  { q: "According to Gautama Buddha, one of the following is the common belief among people ……………………………. ", options:["that men die at old age","that all are going to die","that we should not grieve the dead","that all mortals would die for sure"], answer:0 },
+  { q: "What is the common thing that can be seen with earthen vessels………………. ", options:["all people will make use of them.","potters are going to sell them to all","they all end in being broken","they all will have manufacturing defects"], answer:2 },
+  { q: "In the context of Sermon at Benaras all people are………………………………….", options:["subject to be ruled","subject to pay tax","subject to worship the king","subject to die"], answer:3 },
+  { q: "A father cannot save his son, nor kinsmen…………………………..", options:["their friends","their wives","their parents","their relatives"], answer:3 },
+  { q: "One by one mortals are carried off like an ox………………………….", options:["that is led to the fields","that is led to grazing","that is led to the slaughter","none of the above"], answer:2 },
+  { q: "According to the Buddha the wise….", options:["do not pay tax","do not live with family","do not worship God","do not grieve the dead"], answer:3 },
+  { q: "Grieving the dead makes us……….", options:["selfish","foolish","rational","illogical"], answer:1 },
+  { q: "People obtain peace……………...", options:["by lamenting the dead","by accepting the terms of the world","by lamenting the dead children","by worrying if the dead are kinsmen"], answer:1 },
+  { q: "He who seeks peace should………...", options:["draw out the arrow of lamentation","draw out the arrow of lamentation and complaint","draw out the arrow of lamentation and complaint and grief","draw out the arrow of lamentation alone"], answer:2 },
+  { q: "He, who has drawn out the arrow and has become composed………………...", options:["will obtain all earthly pleasures","will obtain presence of mind","will obtain peace of mind","will obtain nothing"], answer:2 },
+  { q: "He, who has overcome all sorrow will become ……………………...", options:["free from sorrow and be blessed","free from suffering and be happy","free from pain and be calm","free from problems and be quiet"], answer:0 },
+  { q: "The source for the text, \"The Sermon at Benares\"", options:["Values and voices; A University Reader","Values and voices; A College Reader","Voices and Values; A College Reader","Values and voices; A School Reader"], answer:1 },
+  { q: "The author of the source of \" The Sermon at Benares\" is", options:["Betty Renshaw","Betty Shaw","Betty George","Betty Smith"], answer:1 },
+  { q: "The year of publication of the source of \"The Sermon at Benares\" is", options:["1795","1965","1695","1975"], answer:3 },
+  { q: "Find out the meaning of the phrase, afflicted with", options:["affected by suffering","affected by suffering, disease","affected by suffering, disease or pain","affected by discomfort"], answer:2 },
+  { q: "At the age of 12, Prince Gautama was sent for", options:["the study of Archery","the study of art of Politics","the study of different religions","the study of sacred Hindu scriptures"], answer:3 },
+  { q: "Kisa Gotami has learnt that", options:["it is futile to search for the seeds as asked by Gautama Buddha","it's futile to grieve for the loss","it's futile to grieve about death","it's futile to speak about death"], answer:2 },
+  { q: "The act of i) --------------- is not only pointless but rather ii) ------------- causing pain and suffering. It only serves to iii) -------------- peace of mind.  iv) ------------ without complaint is crucial to well-being and peace", options:["grief,  harmful,  destroy,  accepting","grieving,  counterproductive, take away, acceptance","weeping, productive,  take away,  lamentation","grieving,  harmful, destroy, lamenting"], answer:1 },
+  { q: "Choose the option that appropriately completes the following: Lamentation : grief : : ------------- : -----------", options:["laughter: joke","discomfort: fear","celebration: joy","resignation: loss"], answer:2 },
+  { q: "What is the tone of the villagers, when they say, 'Do not remind us of our deepest grief.'", options:["ironic","pessimistic","sceptical","pensive"], answer:3 },
+  { q: "The community's response to Kisa Gotami during second time was some what different. Why do you think that was the case?", options:["They had learnt from Buddha's sermons","They were able to help Kisa in some way this time","They understood parental grief","They liked Kisa and enjoyed talking to her"], answer:1 },
+  { q: "Which of the following sayings of Buddha are apt about the mortals?", options:["i, ii","iii, iv","v, vi","i, vi"], answer:1 },
+  { q: "Choose the option that lists why Siddardha Gautama wandered for seven years?", options:["i, ii","iii, vi","v only","all are wrong except vi"], answer:1 },
+  { q: "Choose the option that is NOT TRUE about the first sermon of Buddha", options:["it was related to the story of a woman named Kisa Gotami","That sermon has been preserved","it was related to the story of a beggar","it gives the message that it is futile to grieve about death"], answer:2 },
+  { q: "What did Buddha compare human beings with and why?", options:["He compared human beings with ripe fruit as they are always in danger of falling","He compared human beings with earthen vessels as they are always in danger of breaking","Both (a) and (b)","Neither (a) nor (b)"], answer:1 },
+  { q: "Choose the correct option that lists right answers to complete the following: i. What realisation came to Kisa Gotami? ii. Why did Kisa Gotami call herself selfish?", options:["i. That begging was not a good thing ii. Because she demanded mustard-seed from people.","i. That mothers should be careful for their sons ii. Because she had lost her son","i. That death is common to all. ii. Because she ignored that there were others also who had lost their near and dear ones","i. That people were selfish ii. Because she troubled the people"], answer:2 },
+  { q: "Pick the option that explains 'the living few, but the dead many.'", options:["It shows the high death rate and low birth rate in the city of Benares","It throws light on the numerous loved ones the villagers had lost over time","It highlights the holy status of Benares where many Hindus go to die","It reflects that many children who had died in the village for various reasons"], answer:1 },
+  { q: "When Kisa Gotami went house to house to ask if any one died in their family, the people replied", options:["v, vi","iii, iv","i, ii","ii, iv"], answer:0 },
+  { q: "Kisa Gotami learnt that", options:["Man is mortal","All human lives get extinguished one day","Everyone is subject to death","all the three above"], answer:3 },
+  { q: "Which of the following statements can not be attributed to the Buddha based on the chapter", options:["i and ii","i and iii","iii and iv","i and iv"], answer:3 }
+];
+
+const perPage = 10;
+let page = 0;
+const totalPages = Math.ceil(questions.length / perPage);
+const quizArea = document.getElementById('quizArea');
+const pageInfo = document.getElementById('pageInfo');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const submitBtn = document.getElementById('submitBtn');
+const resultsDiv = document.getElementById('results');
+
+function letter(i){ return ['A','B','C','D'][i] || '' }
+
+function renderPage(){
+  quizArea.innerHTML = '';
+  const start = page * perPage;
+  const end = Math.min(start + perPage, questions.length);
+  for(let i=start;i<end;i++){
+    const qi = questions[i];
+    const qbox = document.createElement('div');
+    qbox.className = 'question';
+    const qnum = i+1;
+    qbox.innerHTML = '<div class="qtext">Q' + qnum + '. ' + qi.q + '</div>';
+    const optdiv = document.createElement('div');
+    optdiv.className = 'options';
+    qi.options.forEach((opt, idx) => {
+      const id = 'q' + i + '_opt' + idx;
+      const label = document.createElement('label');
+      label.className = 'option';
+      label.htmlFor = id;
+      const radio = '<input type="radio" name="q' + i + '" id="' + id + '" value="' + idx + '">';
+      label.innerHTML = radio + ' <span>' + (typeof letter(idx) === 'string' ? (letter(idx) + ') ') : '') + opt + '</span>';
+      optdiv.appendChild(label);
+    });
+    qbox.appendChild(optdiv);
+    quizArea.appendChild(qbox);
+  }
+  pageInfo.innerText = 'Page ' + (page+1) + ' of ' + totalPages;
+  prevBtn.disabled = page === 0;
+  nextBtn.disabled = page === totalPages - 1;
+}
+
+prevBtn.addEventListener('click', () => { if(page>0){ page--; renderPage(); window.scrollTo({top:0,behavior:"smooth"}); }});
+nextBtn.addEventListener('click', () => { if(page < totalPages-1){ page++; renderPage(); window.scrollTo({top:0,behavior:"smooth"}); }});
+
+function getResponses(){
+  const resp = [];
+  for(let i=0;i<questions.length;i++){
+    const els = document.getElementsByName('q'+i);
+    let val = null;
+    for(const el of els){ if(el.checked){ val = parseInt(el.value); break; } }
+    resp.push(val);
+  }
+  return resp;
+}
+
+submitBtn.addEventListener('click', () => {
+  const name = document.getElementById('studentName').value.trim();
+  const roll = document.getElementById('rollNo').value.trim();
+  const cls = document.getElementById('className').value.trim();
+  if(!name || !roll || !cls){
+    if(!confirm('Student details are incomplete. Continue anyway?')) return;
+  }
+  const resp = getResponses();
+  let score = 0;
+  const details = [];
+  resp.forEach((r, idx) => {
+    const correct = questions[idx].answer;
+    const isCorrect = r === correct;
+    if(isCorrect) score++;
+    details.push({ qIndex: idx, selected: r, correct });
+  });
+
+  // show results
+  resultsDiv.style.display = 'block';
+  resultsDiv.innerHTML = '<div class="meta"><strong>Student:</strong> ' + (name||'—') + ' &nbsp; <strong>Roll:</strong> ' + (roll||'—') + ' &nbsp; <strong>Class:</strong> ' + (cls||'—') + '</div>';
+  resultsDiv.innerHTML += '<div style="font-size:18px;font-weight:700">Score: ' + score + ' / ' + questions.length + '</div>';
+  resultsDiv.innerHTML += '<div class="small" style="margin-top:6px">Correct answers are shown below. Your selected answer is indicated beside each question.</div>';
+
+  // Detailed answers
+  details.forEach(d => {
+    const qi = questions[d.qIndex];
+    const qnum = d.qIndex + 1;
+    const sel = (d.selected === null) ? 'No answer' : ((typeof letter(d.selected) === 'string' ? letter(d.selected) + ') ' : '') + qi.options[d.selected]);
+    const corr = (typeof letter(d.correct) === 'string' ? letter(d.correct) + ') ' : '') + qi.options[d.correct];
+    const mark = (d.selected === d.correct) ? '<span class="correct">✔ Correct</span>' : '<span class="incorrect">✖ Incorrect</span>';
+    resultsDiv.innerHTML += '<div class="answer-line"><div><strong>Q' + qnum + '.</strong> ' + qi.q + '</div>';
+    resultsDiv.innerHTML += '<div style="margin-top:6px"><strong>Your answer:</strong> ' + (d.selected===null? '<em>None</em>' : sel) + ' &nbsp; ' + mark + '</div>';
+    resultsDiv.innerHTML += '<div style="margin-top:6px"><strong>Correct Answer:</strong> ' + corr + '</div></div>';
+  });
+
+  // scroll to results
+  resultsDiv.scrollIntoView({behavior:'smooth'});
+});
+
+// START QUIZ logic: enable start when checkbox checked, reveal quiz when Start clicked
+const watchedCheckbox = document.getElementById('watchedCheckbox');
+const startBtn = document.getElementById('startBtn');
+const preQuiz = document.getElementById('preQuiz');
+
+watchedCheckbox.addEventListener('change', (e) => {
+  startBtn.disabled = !e.target.checked;
+});
+
+startBtn.addEventListener('click', () => {
+  preQuiz.style.display = 'block';
+  preQuiz.scrollIntoView({behavior:'smooth'});
+  page = 0;
+  renderPage();
+  startBtn.disabled = true;
+  watchedCheckbox.disabled = true;
+});
+
+</script>
+</body>
+</html>
